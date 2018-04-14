@@ -23,5 +23,5 @@ function makeGrid() {
     
 			table.append(tr);
 		}
-	}
+	});
 }
