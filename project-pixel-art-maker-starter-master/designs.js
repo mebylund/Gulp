@@ -6,19 +6,22 @@
 function makeGrid() {
 
 // Your code goes here!
-var table = $('sizePicker');
-const height = parseInt(inputHeight.val());
-  const width = parseInt(inputWidth.val());
-
-  for(let row = 0; row < height; row++) {
+//const table = document.getElementById(
+	const height = parseInt(inputHeight.val());
+	const width = parseInt(inputWidth.val());
   
-    const tr = $('<tr></tr>').appendTo(table);
-    
-    for(let col = 0; col < width; col++) {
-       tr.append(`<td>${row}${cell}</td>`);
-    }
-    
-    table.append(tr);
-  }
+	const bton = document.querySelector('submit');
+	document.addEventListener('click', function (event) {
 
+		for(let row = 0; row < height; row++) {
+  
+			const tr = $('<tr></tr>').appendTo(table);
+    
+			for(let col = 0; col < width; col++) {
+				tr.append(`<td>${row}${col}</td>`);
+			}
+    
+			table.append(tr);
+		}
+	}
 }
