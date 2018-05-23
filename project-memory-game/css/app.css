@@ -107,3 +107,26 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/* ul.deck {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li.card {
+    list-style: none;
+    border: 1px solid grey;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+li.card .fa {
+    visibility: hidden;
+}
+
+li.card.open.show .fa {
+    visibility: visible;
+} */

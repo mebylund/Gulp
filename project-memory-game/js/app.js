@@ -1,14 +1,28 @@
-/*
- * Create a list that holds all of your cards
- */
-var cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// Create a list that holds all of your cards
+
+var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', "fa-cube"];
+
+
+//Display the cards on the page
+//  - shuffle the list of cards using the provided "shuffle" method below
+
+function initializeMatchingGame() {
+    const newCards = shuffle(cards);
+    const allCards = document.querySelectorAll('.deck .card');
+    const cls = ['match', 'show', 'open', ...cards];
+    for (let i = 0; i < allCards.length; i++) {
+        allCards[i].classList.remove(...cls);
+        const nw = allCards[i];
+        const child = nw.children[0];
+        child.classList.remove(...cards);
+        child.classList.add(newCards[i]);
+    }
+}
+//  - loop through each card and create its HTML
+
+//  - add each card's HTML to the page
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -24,15 +38,61 @@ function shuffle(array) {
 
     return array;
 }
+//definded array outside respondToClick b/c of scope
+var opArr = [];
+
+//setting timeout for a click
+setTimeout(function (el) { }, 3000);
+
+function respondToTheClick(e) {
+    const el = e.target;
+    //showing card when it is clicked on not when background is clicked
+    if (el.classList = 'card') {
+        el.classList.add('open', 'show');
+        //adding fa-trait to array
+        const inCard = el.children[0];
+        const itmCl = inCard.classList[1];
+        opArr.push(itmCl);
+        //timeout
+        setTimeout(function () {
+            if (opArr.length == 2 && opArr[0] === opArr[1]) {
+                const gb = document.querySelectorAll('.open');
+                //added foreach to remove from both in array and add to each in array
+                gb.forEach(function (el) {
+                    el.classList.remove('open', 'show')
+                });
+                gb.forEach(function (el){
+                    el.classList.add('match')
+                });
+                opArr = [];
+            }
+            else if (opArr.length == 2) {
+                //grab all cards with 'open'
+                const gb = document.querySelectorAll('.open');
+                gb.forEach(function (el) {
+                    el.classList.remove('open', 'show')
+                });
+                opArr = [];
+            }
+        }, 2000);
+    }
+}
+
+const dk = document.querySelector('.deck');
+dk.addEventListener('click', respondToTheClick);
+
+//set up the event listener for a card. If a card is clicked:
+//  - display the card's symbol (put this functionality in another function that you call from this one)
+// - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+// - if the list already has another card, check to see if the two cards match
+//   + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+//   + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+//   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+//   + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    initializeMatchingGame();
+});
