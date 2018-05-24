@@ -46,7 +46,7 @@ setTimeout(function (el) { }, 3000);
 
 function respondToTheClick(e) {
     const el = e.target;
-    //showing card when it is clicked on not when background is clicked
+    //showing card when a card is clicked on not when background is clicked
     if (el.classList = 'card') {
         el.classList.add('open', 'show');
         //adding fa-trait to array
@@ -76,6 +76,11 @@ function respondToTheClick(e) {
             }
         }, 2000);
     }
+    // else if (el.classList = 'deck') {
+    //     document.getElementById("deck").addEventListener("click", function(event){
+    //         event.preventDefault()
+    //     });
+    
 }
 
 const dk = document.querySelector('.deck');
