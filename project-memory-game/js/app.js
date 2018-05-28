@@ -1,5 +1,7 @@
 
+
 // Create a list that holds all of your cards
+
 
 var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', "fa-cube"];
 
@@ -40,6 +42,7 @@ function shuffle(array) {
 }
 //definded array outside respondToClick b/c of scope
 var opArr = [];
+var mchArr = [];
 
 //setting timeout for a click
 setTimeout(function (el) { }, 3000);
@@ -63,8 +66,15 @@ function respondToTheClick(e) {
                 });
                 gb.forEach(function (el){
                     el.classList.add('match')
+                    mchArr.push(itmCl);
                 });
                 opArr = [];
+                //@todo when all cards are flipped over and display Game End
+                if (mchArr.length == cards.length){
+                    var modal = document.querySelector('.modal');
+                    modal.style.display = 'block';
+                    debugger
+                }
             }
             else if (opArr.length == 2) {
                 //grab all cards with 'open'
@@ -75,6 +85,8 @@ function respondToTheClick(e) {
                 opArr = [];
             }
         }, 2000);
+     
+
     }
     // else if (el.classList = 'deck') {
     //     document.getElementById("deck").addEventListener("click", function(event){
