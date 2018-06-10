@@ -43,12 +43,24 @@ function shuffle(array) {
 //definded array outside respondToClick b/c of scope
 var opArr = [];
 var mchArr = [];
+var clicks = 0;
+
 
 //setting timeout for a click
 setTimeout(function (el) { }, 3000);
 
 function respondToTheClick(e) {
     const el = e.target;
+
+    // know how many times it was clicked
+    var add = (function () {
+        clicks += 1;
+    })();
+    
+    function displayClicks() {
+        document.getElementById('clckNum').innerHTML += clicks/2 + ' tries!';
+    }
+
     //showing card when a card is clicked on not when background is clicked
     if (el.classList = 'card') {
         el.classList.add('open', 'show');
@@ -56,6 +68,7 @@ function respondToTheClick(e) {
         const inCard = el.children[0];
         const itmCl = inCard.classList[1];
         opArr.push(itmCl);
+
         //timeout
         setTimeout(function () {
             if (opArr.length == 2 && opArr[0] === opArr[1]) {
@@ -73,7 +86,24 @@ function respondToTheClick(e) {
                 if (mchArr.length == cards.length){
                     var modal = document.querySelector('.modal');
                     modal.style.display = 'block';
-                    debugger
+                    
+                    //display number of clicks at end
+                    if (clicks <= 20 ) {
+                        debugger
+                        displayClicks();
+                    }
+                    // they get 1 star
+                    else if (clicks >= 40 ){
+                        debugger
+                        //@TODO display stars.
+                        displayClicks();
+                    }
+                    //they get 2 stars
+                    else {
+                        debugger
+                        displayClicks();
+                    }
+                    
                 }
             }
             else if (opArr.length == 2) {
@@ -94,6 +124,7 @@ function respondToTheClick(e) {
     //     });
     
 }
+
 
 const dk = document.querySelector('.deck');
 dk.addEventListener('click', respondToTheClick);
