@@ -56,11 +56,15 @@ function respondToTheClick(e) {
     var add = (function () {
         clicks += 1;
     })();
-    
+    // show number of clicks
     function displayClicks() {
         document.getElementById('clckNum').innerHTML += clicks/2 + ' tries!';
     }
-
+    // grab stars class
+    function displayStars() {
+    document.querySelectorAll('.fa-star');
+    
+    }
     //showing card when a card is clicked on not when background is clicked
     if (el.classList = 'card') {
         el.classList.add('open', 'show');
@@ -88,18 +92,21 @@ function respondToTheClick(e) {
                     modal.style.display = 'block';
                     
                     //display number of clicks at end
-                    if (clicks <= 20 ) {
+                    if (clicks <= 25 ) {
+                        displayStars();
                         debugger
                         displayClicks();
                     }
                     // they get 1 star
                     else if (clicks >= 40 ){
+                        displayStars();
                         debugger
                         //@TODO display stars.
                         displayClicks();
                     }
                     //they get 2 stars
                     else {
+                        displayStars();
                         debugger
                         displayClicks();
                     }
