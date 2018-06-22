@@ -19,6 +19,10 @@ function initializeMatchingGame() {
         const child = nw.children[0];
         child.classList.remove(...cards);
         child.classList.add(newCards[i]);
+
+        if (newCards[i] !== 'fa-diamond') {
+            allCards[i].classList.add('open', 'match');
+        }
     }
 }
 //  - loop through each card and create its HTML
@@ -45,10 +49,6 @@ var opArr = [];
 var mchArr = [];
 var clicks = 0;
 
-
-//setting timeout for a click
-setTimeout(function (el) { }, 3000);
-
 function respondToTheClick(e) {
     const el = e.target;
 
@@ -58,15 +58,17 @@ function respondToTheClick(e) {
     })();
     // show number of clicks
     function displayClicks() {
-        document.getElementById('clckNum').innerHTML += clicks/2 + ' tries!';
+        document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
     }
     // grab stars class
     function displayStars() {
-    document.querySelectorAll('.fa-star');
-    
+        const stars = document.querySelectorAll('.modal-content .fa-star');
+
+        debugger
+
     }
     //showing card when a card is clicked on not when background is clicked
-    if (el.classList = 'card') {
+    if (el.classList.contains('card')) {
         el.classList.add('open', 'show');
         //adding fa-trait to array
         const inCard = el.children[0];
@@ -81,36 +83,42 @@ function respondToTheClick(e) {
                 gb.forEach(function (el) {
                     el.classList.remove('open', 'show')
                 });
-                gb.forEach(function (el){
+                gb.forEach(function (el) {
                     el.classList.add('match')
                     mchArr.push(itmCl);
                 });
                 opArr = [];
                 //@todo when all cards are flipped over and display Game End
-                if (mchArr.length == cards.length){
+                if (mchArr.length == cards.length) {
                     var modal = document.querySelector('.modal');
                     modal.style.display = 'block';
-                    
+
                     //display number of clicks at end
-                    if (clicks <= 25 ) {
-                        displayStars();
-                        debugger
-                        displayClicks();
+                    switch (clicks) {
+                        case clicks <= 25:
+                            displayStars();
+                            debugger
+                            displayClicks();
+                            break;
+                        // they get 1 star
+                        case clicks >= 40:
+                            displayStars();
+                            const star1 = document.querySelector('.modal-content .fa-star');
+                            star1.style.display = 'block';
+                            const star2 = document.querySelector
+                            debugger
+                            //@TODO display stars.
+                            displayClicks();
+                            break;
+                        //they get 2 stars
+                        default:
+                            displayStars();
+
+                            debugger
+                            displayClicks();
+
                     }
-                    // they get 1 star
-                    else if (clicks >= 40 ){
-                        displayStars();
-                        debugger
-                        //@TODO display stars.
-                        displayClicks();
-                    }
-                    //they get 2 stars
-                    else {
-                        displayStars();
-                        debugger
-                        displayClicks();
-                    }
-                    
+
                 }
             }
             else if (opArr.length == 2) {
@@ -122,14 +130,14 @@ function respondToTheClick(e) {
                 opArr = [];
             }
         }, 2000);
-     
+
 
     }
     // else if (el.classList = 'deck') {
     //     document.getElementById("deck").addEventListener("click", function(event){
     //         event.preventDefault()
     //     });
-    
+
 }
 
 
