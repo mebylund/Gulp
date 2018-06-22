@@ -19,7 +19,7 @@ function initializeMatchingGame() {
         const child = nw.children[0];
         child.classList.remove(...cards);
         child.classList.add(newCards[i]);
-
+        //SHORTCUT
         if (newCards[i] !== 'fa-diamond') {
             allCards[i].classList.add('open', 'match');
         }
@@ -61,11 +61,18 @@ function respondToTheClick(e) {
         document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
     }
     // grab stars class
-    function displayStars() {
+    function displayStars(numS) {
         const stars = document.querySelectorAll('.modal-content .fa-star');
-
-        debugger
-
+        //reads input and displays correct number of stars
+        switch (true) {
+            case numS === 1:
+            stars[2].parentElement.style.display = "none";
+            stars[1].parentElement.style.display ="none";
+            break;
+            case numS === 2:
+            stars[2].parentElement.style.display ="none";
+            break;
+        }
     }
     //showing card when a card is clicked on not when background is clicked
     if (el.classList.contains('card')) {
@@ -93,28 +100,21 @@ function respondToTheClick(e) {
                     var modal = document.querySelector('.modal');
                     modal.style.display = 'block';
 
+
                     //display number of clicks at end
-                    switch (clicks) {
+                    switch (true) {
                         case clicks <= 25:
-                            displayStars();
-                            debugger
+                            displayStars(3);
                             displayClicks();
                             break;
                         // they get 1 star
                         case clicks >= 40:
-                            displayStars();
-                            const star1 = document.querySelector('.modal-content .fa-star');
-                            star1.style.display = 'block';
-                            const star2 = document.querySelector
-                            debugger
-                            //@TODO display stars.
+                            displayStars(1);
                             displayClicks();
                             break;
                         //they get 2 stars
                         default:
-                            displayStars();
-
-                            debugger
+                            displayStars(2);
                             displayClicks();
 
                     }
