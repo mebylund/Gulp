@@ -19,10 +19,11 @@ function initializeMatchingGame() {
         const child = nw.children[0];
         child.classList.remove(...cards);
         child.classList.add(newCards[i]);
-        //SHORTCUT
-        if (newCards[i] !== 'fa-diamond') {
-            allCards[i].classList.add('open', 'match');
-        }
+
+        // //SHORTCUT to end
+        // if (newCards[i] !== 'fa-diamond') {
+        //     allCards[i].classList.add('open', 'match');
+        // }
     }
 }
 //  - loop through each card and create its HTML
@@ -76,7 +77,7 @@ function respondToTheClick(e) {
     }
     //showing card when a card is clicked on not when background is clicked
     if (el.classList.contains('card')) {
-        el.classList.add('open', 'show');
+        el.classList.add('open', 'show', 'flipInY', 'animated');
         //adding fa-trait to array
         const inCard = el.children[0];
         const itmCl = inCard.classList[1];
@@ -88,10 +89,10 @@ function respondToTheClick(e) {
                 const gb = document.querySelectorAll('.open');
                 //added foreach to remove from both in array and add to each in array
                 gb.forEach(function (el) {
-                    el.classList.remove('open', 'show')
+                    el.classList.remove('open', 'show', 'animated', 'flipInY')
                 });
                 gb.forEach(function (el) {
-                    el.classList.add('match')
+                    el.classList.add('match', 'animated', 'tada')
                     mchArr.push(itmCl);
                 });
                 opArr = [];
@@ -116,16 +117,20 @@ function respondToTheClick(e) {
                         default:
                             displayStars(2);
                             displayClicks();
-
                     }
-
                 }
             }
             else if (opArr.length == 2) {
                 //grab all cards with 'open'
                 const gb = document.querySelectorAll('.open');
                 gb.forEach(function (el) {
-                    el.classList.remove('open', 'show')
+                    el.classList.remove('flipInY')
+                });
+                gb.forEach(function (el) {
+                    el.classList.add('shake')
+                });
+                gb.forEach(function (el) {
+                    el.classList.remove('open', 'show', 'animated', 'flipInY', 'shake')
                 });
                 opArr = [];
             }
