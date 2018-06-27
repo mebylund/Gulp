@@ -1,10 +1,10 @@
 
 
 // Create a list that holds all of your cards
-$().ready(() => {
-    debugger
-    console.log('ready');
-});
+// $().ready(() => {
+//     debugger
+//     console.log('ready');
+// });
 
 var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', "fa-cube"];
 
@@ -132,10 +132,12 @@ function respondToTheClick(e) {
                 gb.forEach(function (el) {
                     el.classList.add('shake')
                 });
-                gb.forEach(function (el) {
-                    el.classList.remove('open', 'show', 'animated', 'flipInY', 'shake')
-                });
-                opArr = [];
+                setTimeout(function () {
+                    gb.forEach(function (el) {
+                        el.classList.remove('open', 'show', 'animated', 'flipInY', 'shake')
+                    });
+                    opArr = [];
+            }, 1000);
             }
         }, 2000);
 
