@@ -48,8 +48,8 @@ var clicks = 0;
 const STARS_3 = 22;
 const STARS_1 = 32;
 
- // show number of clicks
- function displayClicks() {
+// show number of clicks
+function displayClicks() {
     document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
 }
 //diplay number of moves at top durring game
@@ -68,12 +68,12 @@ function displayStars(numS) {
     //reads input and displays correct number of stars
     switch (true) {
         case numS === 1:
-        stars[2].parentElement.style.display = "none";
-        stars[1].parentElement.style.display ="none";
-        break;
+            stars[2].parentElement.style.display = "none";
+            stars[1].parentElement.style.display = "none";
+            break;
         case numS === 2:
-        stars[2].parentElement.style.display ="none";
-        break;
+            stars[2].parentElement.style.display = "none";
+            break;
     }
 }
 // grab stars class
@@ -82,49 +82,45 @@ function displayStarsEnd(numS) {
     //reads input and displays correct number of stars
     switch (true) {
         case numS === 1:
-        stars[2].parentElement.style.display = "none";
-        stars[1].parentElement.style.display ="none";
-        break;
+            stars[2].parentElement.style.display = "none";
+            stars[1].parentElement.style.display = "none";
+            break;
         case numS === 2:
-        stars[2].parentElement.style.display ="none";
-        break;
+            stars[2].parentElement.style.display = "none";
+            break;
     }
 }
 
 
 
 function respondToTheClick(e) {
-    // know how many times it was clicked
-    var add = (function () {
-        clicks += 1;
-    })();
-
-    //display stars at Top
-    switch (true) {
-        case clicks <= STARS_3:
-            displayStars(3);
-            break;
-        case clicks >= STARS_1:
-            displayStars(1);
-            break;
-        default:
-            displayStars(2);
-    }
-    
-    //display moves at top
-    displayMoves();
-
-
-    //ignoring other clicks if 2 cards are flipped over
-    if (opArr.length == 2) return; 
-
     const el = e.target;
 
-    
-   
-    
+    //ignoring other clicks if 2 cards are flipped over
+    if (opArr.length == 2) return;
+
     //showing card when a card is clicked on not when background is clicked
-    if (el.classList.contains('card')) {
+    if (el.classList.contains('card') && !el.classList.contains('match')) {
+        // know how many times it was clicked
+        var add = (function () {
+            clicks += 1;
+        })();
+
+        //display stars at Top
+        switch (true) {
+            case clicks <= STARS_3:
+                displayStars(3);
+                break;
+            case clicks >= STARS_1:
+                displayStars(1);
+                break;
+            default:
+                displayStars(2);
+        }
+
+        //display moves at top
+        displayMoves();
+
         el.classList.add('open', 'show', 'flipInY', 'animated');
         //adding fa-trait to array
         const inCard = el.children[0];
@@ -182,7 +178,7 @@ function respondToTheClick(e) {
                         el.classList.remove('open', 'show', 'animated', 'flipInY', 'shake')
                     });
                     opArr = [];
-            }, 1000);
+                }, 1000);
             }
         }, 500);
 
