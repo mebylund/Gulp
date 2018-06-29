@@ -1,11 +1,4 @@
 
-
-// Create a list that holds all of your cards
-// $().ready(() => {
-//     debugger
-//     console.log('ready');
-// });
-
 var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', "fa-cube"];
 
 
@@ -52,6 +45,8 @@ function shuffle(array) {
 var opArr = [];
 var mchArr = [];
 var clicks = 0;
+const STARS_3 = 22;
+const STARS_1 = 32;
 
  // show number of clicks
  function displayClicks() {
@@ -59,12 +54,12 @@ var clicks = 0;
 }
 //diplay number of moves at top durring game
 function displayMoves() {
-    // const inMC = document.querySelector('.moves').innerHTML += clicks;
-    const inMoves = Number (document.querySelector('.moves').innerHTML);
-    inMoves == clicks / 2;
-    inMoves.toString();
-    
-
+    const movesEl = document.querySelector('.moves');
+    var inMoves = Number(movesEl.innerHTML);
+    inMoves = clicks / 2;
+    inMoves = Math.floor(inMoves);
+    const movesStr = inMoves.toString();
+    movesEl.innerHTML = movesStr;
 }
 
 // grab stars class
@@ -106,10 +101,10 @@ function respondToTheClick(e) {
 
     //display stars at Top
     switch (true) {
-        case clicks <= 25:
+        case clicks <= STARS_3:
             displayStars(3);
             break;
-        case clicks >= 40:
+        case clicks >= STARS_1:
             displayStars(1);
             break;
         default:
@@ -157,12 +152,12 @@ function respondToTheClick(e) {
 
                     //display number of clicks at end
                     switch (true) {
-                        case clicks <= 25:
+                        case clicks <= STARS_3:
                             displayStarsEnd(3);
                             displayClicks();
                             break;
                         // they get 1 star
-                        case clicks >= 40:
+                        case clicks >= STARS_1:
                             displayStarsEnd(1);
                             displayClicks();
                             break;
