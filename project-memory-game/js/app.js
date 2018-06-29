@@ -80,7 +80,6 @@ function displayStars(numS) {
         stars[2].parentElement.style.display ="none";
         break;
     }
-    debugger
 }
 // grab stars class
 function displayStarsEnd(numS) {
@@ -114,7 +113,7 @@ function respondToTheClick(e) {
             displayStars(1);
             break;
         default:
-            displayStarsEnd(2);
+            displayStars(2);
     }
     
     //display moves at top
