@@ -53,31 +53,82 @@ var opArr = [];
 var mchArr = [];
 var clicks = 0;
 
-function respondToTheClick(e) {
-    const el = e.target;
+ // show number of clicks
+ function displayClicks() {
+    document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
+}
+//diplay number of moves at top durring game
+function displayMoves() {
+    // const inMC = document.querySelector('.moves').innerHTML += clicks;
+    const inMoves = Number (document.querySelector('.moves').innerHTML);
+    inMoves == clicks / 2;
+    inMoves.toString();
+    
 
+}
+
+// grab stars class
+function displayStars(numS) {
+    const stars = document.querySelectorAll('.score-panel .fa-star');
+    //reads input and displays correct number of stars
+    switch (true) {
+        case numS === 1:
+        stars[2].parentElement.style.display = "none";
+        stars[1].parentElement.style.display ="none";
+        break;
+        case numS === 2:
+        stars[2].parentElement.style.display ="none";
+        break;
+    }
+    debugger
+}
+// grab stars class
+function displayStarsEnd(numS) {
+    const stars = document.querySelectorAll('.modal-content .fa-star');
+    //reads input and displays correct number of stars
+    switch (true) {
+        case numS === 1:
+        stars[2].parentElement.style.display = "none";
+        stars[1].parentElement.style.display ="none";
+        break;
+        case numS === 2:
+        stars[2].parentElement.style.display ="none";
+        break;
+    }
+}
+
+
+
+function respondToTheClick(e) {
     // know how many times it was clicked
     var add = (function () {
         clicks += 1;
     })();
-    // show number of clicks
-    function displayClicks() {
-        document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
-    }
-    // grab stars class
-    function displayStars(numS) {
-        const stars = document.querySelectorAll('.modal-content .fa-star');
-        //reads input and displays correct number of stars
-        switch (true) {
-            case numS === 1:
-            stars[2].parentElement.style.display = "none";
-            stars[1].parentElement.style.display ="none";
+
+    //display stars at Top
+    switch (true) {
+        case clicks <= 25:
+            displayStars(3);
             break;
-            case numS === 2:
-            stars[2].parentElement.style.display ="none";
+        case clicks >= 40:
+            displayStars(1);
             break;
-        }
+        default:
+            displayStarsEnd(2);
     }
+    
+    //display moves at top
+    displayMoves();
+
+
+    //ignoring other clicks if 2 cards are flipped over
+    if (opArr.length == 2) return; 
+
+    const el = e.target;
+
+    
+   
+    
     //showing card when a card is clicked on not when background is clicked
     if (el.classList.contains('card')) {
         el.classList.add('open', 'show', 'flipInY', 'animated');
@@ -99,7 +150,7 @@ function respondToTheClick(e) {
                     mchArr.push(itmCl);
                 });
                 opArr = [];
-                //@todo when all cards are flipped over and display Game End
+                //when all cards are flipped over and display Game End
                 if (mchArr.length == cards.length) {
                     var modal = document.querySelector('.modal');
                     modal.style.display = 'block';
@@ -108,17 +159,17 @@ function respondToTheClick(e) {
                     //display number of clicks at end
                     switch (true) {
                         case clicks <= 25:
-                            displayStars(3);
+                            displayStarsEnd(3);
                             displayClicks();
                             break;
                         // they get 1 star
                         case clicks >= 40:
-                            displayStars(1);
+                            displayStarsEnd(1);
                             displayClicks();
                             break;
                         //they get 2 stars
                         default:
-                            displayStars(2);
+                            displayStarsEnd(2);
                             displayClicks();
                     }
                 }
@@ -139,7 +190,7 @@ function respondToTheClick(e) {
                     opArr = [];
             }, 1000);
             }
-        }, 2000);
+        }, 500);
 
 
     }
