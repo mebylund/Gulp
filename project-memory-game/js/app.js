@@ -1,10 +1,25 @@
-
-var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-anchor', 'fa-leaf', 'fa-bicycle', 'fa-diamond', 'fa-bomb', 'fa-leaf', 'fa-bomb', 'fa-bolt', 'fa-bicycle', 'fa-paper-plane-o', "fa-cube"];
-
+//array of all the cards
+let cards = [
+    'fa-diamond', 
+    'fa-paper-plane-o', 
+    'fa-anchor', 
+    'fa-bolt', 
+    'fa-cube', 
+    'fa-anchor', 
+    'fa-leaf', 
+    'fa-bicycle', 
+    'fa-diamond', 
+    'fa-bomb', 
+    'fa-leaf', 
+    'fa-bomb', 
+    'fa-bolt', 
+    'fa-bicycle', 
+    'fa-paper-plane-o', 
+    'fa-cube'
+];
 
 //Display the cards on the page
 //  - shuffle the list of cards using the provided "shuffle" method below
-
 function initializeMatchingGame() {
     const newCards = shuffle(cards);
     const allCards = document.querySelectorAll('.deck .card');
@@ -25,7 +40,7 @@ function initializeMatchingGame() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -39,22 +54,22 @@ function shuffle(array) {
 }
 
 //definded array outside respondToClick b/c of scope
-var opArr = [];
-var mchArr = [];
-var clicks = 0;
+let opArr = [];
+let mchArr = [];
+let clicks = 0;
 const STARS_3 = 22;
 const STARS_1 = 32;
 
 // show number of clicks
 function displayClicks() {
-    document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries! \nYou won with time: ' + minutes + ' min ' + seconds + 'sec!';
+    document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries! You won with time: ' + minutes + ' min ' + seconds + 'sec!';
     
 }
 
 //diplay number of moves at top durring game
 function displayMoves() {
     const movesEl = document.querySelector('.moves');
-    var inMoves = Number(movesEl.innerHTML);
+    let inMoves = Number(movesEl.innerHTML);
     inMoves = clicks / 2;
     inMoves = Math.floor(inMoves);
     const movesStr = inMoves.toString();
@@ -67,25 +82,26 @@ function displayStars(numS) {
     //reads input and displays correct number of stars
     switch (true) {
         case numS === 1:
-            stars[2].parentElement.style.display = "none";
-            stars[1].parentElement.style.display = "none";
+            stars[2].parentElement.style.display = 'none';
+            stars[1].parentElement.style.display = 'none';
             break;
         case numS === 2:
-            stars[2].parentElement.style.display = "none";
+            stars[2].parentElement.style.display = 'none';
             break;
     }
 }
+
 // grab stars class, show number of stars at end of game
 function displayStarsEnd(numS) {
     const stars = document.querySelectorAll('.modal-content .fa-star');
     //reads input and displays correct number of stars
     switch (true) {
         case numS === 1:
-            stars[2].parentElement.style.display = "none";
-            stars[1].parentElement.style.display = "none";
+            stars[2].parentElement.style.display = 'none';
+            stars[1].parentElement.style.display = 'none';
             break;
         case numS === 2:
-            stars[2].parentElement.style.display = "none";
+            stars[2].parentElement.style.display = 'none';
             break;
     }
 }
@@ -97,7 +113,7 @@ let minutes = 0;
 let time;
 let timerStart;
 //set timer
-timer.innerHTML = "0 mins 0 sec";
+timer.innerHTML = '0 mins 0 sec';
 timerStart = true; 
 //funacton to set game timer
 function setGameTimer(){
@@ -125,7 +141,7 @@ function respondToTheClick(e) {
     //showing card when a card is clicked on not when background is clicked
     if (el.classList.contains('card') && !el.classList.contains('match')) {
         // know how many times it was clicked
-        var add = (function () {
+        let add = (function () {
             clicks += 1;
         })();
 
@@ -167,7 +183,7 @@ function respondToTheClick(e) {
                 //when all cards are flipped over and display Game End
                 if (mchArr.length == cards.length) {
                     clearInterval(time); 
-                    var modal = document.querySelector('.modal');
+                    let modal = document.querySelector('.modal');
                     modal.style.display = 'block';
 
                     //display number of clicks and stars at end
@@ -206,14 +222,12 @@ function respondToTheClick(e) {
                 }, 1000);
             }
         }, 500);
-
-
     }
 }
 
 const dk = document.querySelector('.deck');
 dk.addEventListener('click', respondToTheClick);
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     initializeMatchingGame();
 });
