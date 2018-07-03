@@ -22,10 +22,6 @@ function initializeMatchingGame() {
         // }
     }
 }
-//  - loop through each card and create its HTML
-
-//  - add each card's HTML to the page
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -41,6 +37,7 @@ function shuffle(array) {
 
     return array;
 }
+
 //definded array outside respondToClick b/c of scope
 var opArr = [];
 var mchArr = [];
@@ -50,8 +47,10 @@ const STARS_1 = 32;
 
 // show number of clicks
 function displayClicks() {
-    document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries!';
+    document.getElementById('clckNum').innerHTML += clicks / 2 + ' tries! \nYou won with time: ' + minutes + ' min ' + seconds + 'sec!';
+    
 }
+
 //diplay number of moves at top durring game
 function displayMoves() {
     const movesEl = document.querySelector('.moves');
@@ -62,7 +61,7 @@ function displayMoves() {
     movesEl.innerHTML = movesStr;
 }
 
-// grab stars class
+// grab stars class, shows stars decreasing as game is played
 function displayStars(numS) {
     const stars = document.querySelectorAll('.score-panel .fa-star');
     //reads input and displays correct number of stars
@@ -76,7 +75,7 @@ function displayStars(numS) {
             break;
     }
 }
-// grab stars class
+// grab stars class, show number of stars at end of game
 function displayStarsEnd(numS) {
     const stars = document.querySelectorAll('.modal-content .fa-star');
     //reads input and displays correct number of stars
@@ -91,11 +90,35 @@ function displayStarsEnd(numS) {
     }
 }
 
-
+//timer
+const timer = document.getElementById('timer');
+let seconds = 0;
+let minutes = 0;
+let time;
+let timerStart;
+//set timer
+timer.innerHTML = "0 mins 0 sec";
+timerStart = true; 
+//funacton to set game timer
+function setGameTimer(){
+    seconds = 0;
+    minutes = 0;
+    time = setInterval(() => {
+        seconds++;
+        if(seconds === 60){
+            minutes++;
+            seconds = 0;
+        } 
+        timer.innerHTML = `${minutes} mins ${seconds} sec`;
+    }, 1000);
+}
 
 function respondToTheClick(e) {
     const el = e.target;
-
+    if(timerStart) {
+        setGameTimer();
+        timerStart = false;
+     }   
     //ignoring other clicks if 2 cards are flipped over
     if (opArr.length == 2) return;
 
@@ -127,7 +150,7 @@ function respondToTheClick(e) {
         const itmCl = inCard.classList[1];
         opArr.push(itmCl);
 
-        //timeout
+        //timeout, gives time for players to see card when 2 are flipped over
         setTimeout(function () {
             if (opArr.length == 2 && opArr[0] === opArr[1]) {
                 const gb = document.querySelectorAll('.open');
@@ -140,13 +163,14 @@ function respondToTheClick(e) {
                     mchArr.push(itmCl);
                 });
                 opArr = [];
+
                 //when all cards are flipped over and display Game End
                 if (mchArr.length == cards.length) {
+                    clearInterval(time); 
                     var modal = document.querySelector('.modal');
                     modal.style.display = 'block';
 
-
-                    //display number of clicks at end
+                    //display number of clicks and stars at end
                     switch (true) {
                         case clicks <= STARS_3:
                             displayStarsEnd(3);
@@ -173,6 +197,7 @@ function respondToTheClick(e) {
                 gb.forEach(function (el) {
                     el.classList.add('shake')
                 });
+                //timeout for animation
                 setTimeout(function () {
                     gb.forEach(function (el) {
                         el.classList.remove('open', 'show', 'animated', 'flipInY', 'shake')
@@ -184,28 +209,10 @@ function respondToTheClick(e) {
 
 
     }
-    // else if (el.classList = 'deck') {
-    //     document.getElementById("deck").addEventListener("click", function(event){
-    //         event.preventDefault()
-    //     });
-
 }
-
 
 const dk = document.querySelector('.deck');
 dk.addEventListener('click', respondToTheClick);
-
-//set up the event listener for a card. If a card is clicked:
-//  - display the card's symbol (put this functionality in another function that you call from this one)
-// - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-// - if the list already has another card, check to see if the two cards match
-//   + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-//   + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
-//   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-//   + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     initializeMatchingGame();

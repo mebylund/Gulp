@@ -120,7 +120,8 @@ h1 {
     background-color: rgb(0,0,0);
 }
 
-.modal-content{
+.modal-content {
+    font-family: 'Open Sans', sans-serif;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -128,26 +129,7 @@ h1 {
     width: 80%;
 }
 
-
-/* ul.deck {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-li.card {
+.modal-content .stars li {
     list-style: none;
-    border: 1px solid grey;
-    width: 200px;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    display: inline-block;
 }
-
-li.card .fa {
-    visibility: hidden;
-}
-
-li.card.open.show .fa {
-    visibility: visible;
-} */
