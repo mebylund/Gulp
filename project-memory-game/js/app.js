@@ -139,7 +139,7 @@ function respondToTheClick(e) {
     if (opArr.length == 2) return;
 
     //showing card when a card is clicked on not when background is clicked
-    if (el.classList.contains('card') && !el.classList.contains('match')) {
+    if (el.classList.contains('card') && !el.classList.contains('match') && !el.classList.contains('open')) {
         // know how many times it was clicked
         let add = (function () {
             clicks += 1;
