@@ -3,9 +3,9 @@ This project allows the user to play a fun memory matching game and inform them 
 
 ## Table of Contents
 
-* [How to Play](#How to Play)
+* [How to Play](#how_to_play)
 * [Instructions](#instructions)
-* [External Libraries Used](#External Libraries Used)
+* [External Libraries Used](#external_libraries_used)
 
 ## How to Play
 
