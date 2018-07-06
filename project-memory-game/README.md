@@ -1,6 +1,5 @@
 # Memory Game Project
-This project allows the user to play a fun memory matching game and inform them how long and how many turns it took them to complete
-the game.
+This project allows the user to play a fun memory matching game and inform them how long and how many turns it took them to complete the game.
 
 ## Table of Contents
 
