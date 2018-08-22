@@ -1,28 +1,6 @@
-# Memory Game Project
-This project allows the user to play a fun memory matching game and inform them how long and how many turns it took them to complete the game.
+frontend-nanodegree-arcade-game
+===============================
 
-## Table of Contents
+Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
 
-* [How to Play](#how_to_play)
-* [Instructions](#instructions)
-* [Known Issues](#known_issues)
-* [External Libraries Used](#external_libraries_used)
-
-## How to Play
-
-Load this link in your browser
-
-## Instructions
-
-* Riveal cards by clicking on them
-* Find cards that are the same to match them
-* Once all cards are revieled, your time, score, and number of tries will be displayed
-
-## Known Issues
-
-When cards are clicked rapidly in concession, occasionally 3 cards will flip over instead of just 2.
-
-## External Libraries Used
-
-* animate.css
-
+For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
