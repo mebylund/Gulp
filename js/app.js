@@ -19,9 +19,7 @@ class Enemy {
             player.resetPosition();
             player.points = player.points - 1;
             player.life = player.life - 1;
-            if (player.life === 0){
-                alert ("Game over!");
-            }
+            player.gameOver();
         }
         
     };
@@ -103,6 +101,11 @@ class Player{
     resetPosition(){
         this.x=200;
         this.y=400;
+    }
+    gameOver(){
+        if (this.life === 0){
+            alert ("Game over!");
+        }
     }
 }
 var player = new Player(200,400,50);
