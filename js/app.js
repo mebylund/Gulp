@@ -20,7 +20,7 @@ class Enemy {
             player.points = player.points - 1;
             player.life = player.life - 1;
             if (player.life === 0){
-                alert ("Game over!")
+                alert ("Game over!");
             }
         }
         
