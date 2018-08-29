@@ -102,9 +102,14 @@ class Player{
         this.x=200;
         this.y=400;
     }
+    restartGame(){
+        this.points = 0;
+        this.life = 3;
+    }
     gameOver(){
         if (this.life === 0){
             alert ("Game over!");
+            this.restartGame();
         }
     }
 }
